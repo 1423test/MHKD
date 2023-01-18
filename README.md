@@ -12,7 +12,7 @@ This repo is for source code of paper "Meta-Path and  Hypergraph Fused Distillat
 GPU: GeForce RTX 3090 Ti
 
 ## Usage
-1. go into `cd ./teacher`, and then you can follow the corresponding readme.md to train teacher model. And the publicly source codes of teacher model can be available at the following urls:
+1. go into `cd ./teacher`, and then you can follow the corresponding “readme.md” to train teacher model. And the publicly source codes of teacher model can be available at the following urls:
 
 [HAN] https://github.com/dmlc/dgl/tree/master/examples/pytorch/han
 
@@ -23,7 +23,7 @@ GPU: GeForce RTX 3090 Ti
 [Heco] https://github.com/BUPT-GAMMA/HeCo
 
 2. use `python hy_dblp.py`  to run student model evaluated in DBLP dataset.
-Here, "acm" can be replaced by "dblp", "aminer", "freebase"  or "IMDB".
+Here, "acm" can be replaced by "dblp", "aminer", "freebase"  or "imdb".
 
 ## Some tips in parameters
 1. We provide our hyperparameters setting as reported in our Appendix. 
