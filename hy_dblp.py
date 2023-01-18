@@ -101,7 +101,7 @@ num_class = label.shape[-1]
 student = GCN(nfeat=features[0].shape[1], nhid=stu_args.hidden_dim).to(device)
 opt = torch.optim.Adam(student.parameters(), lr=stu_args.lr, weight_decay=stu_args.lr)
 
-h_t =   torch.from_numpy(np.load("/home/yhkj/D/MHGCN/HeCo/code/embeds/"+stu_args.dataset+"/"+str(args.turn)+".pkl", "wb", allow_pickle=True)).to(device)
+h_t =   torch.from_numpy(np.load("./teacher/HeCo/code/embeds/"+stu_args.dataset+"/"+str(args.turn)+".pkl", "wb", allow_pickle=True)).to(device)
 
 
 label = label.to(device)
