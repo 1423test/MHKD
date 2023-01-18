@@ -11,64 +11,9 @@ import torch
 
 device = torch.device("cuda:0")
 
-def meta_acm():
-    # The order of node types: 0 p 1 a 2 s
-    path = "./data/acm/"
-
-    PA = np.genfromtxt("{}{}.txt".format(path, "pa"), dtype=np.int32)
-    PS = np.genfromtxt("{}{}.txt".format(path, "ps"), dtype=np.int32)
-
-    P_A = torch.from_numpy(PA[:, 0]).to(torch.long)
-    A = torch.from_numpy(PA[:, 1]).to(torch.long)
-
-    P_S = torch.from_numpy(PS[:, 0]).to(torch.long)
-    S = torch.from_numpy(PS[:, 1]).to(torch.long)
-
-    hg = dgl.heterograph(
-        {
-            ('paper', 'pa', 'author'): (P_A, A),
-            ('paper', 'ps', 'subject'): (P_S, S),
-            ('author', 'ap', 'paper'): (A, P_A),
-            ('subject', 'sp', 'paper'): (S, P_S),
-
-        })
-
-    return hg
-
-def hyper_acm():
-    g = meta_acm()
-
-    meta0 = g['paper', 'pa', 'author'].edges()
-    meta1 = g["paper", "ps", "subject"].edges()
-
-    target_node0 = meta0[0].tolist()
-    ass_node0 = meta0[1].tolist()
-    target_node1 = meta1[0].tolist()
-    ass_node1 = meta1[1].tolist()
-
-    n = g.number_of_nodes('paper')
-    n1 = n + g.number_of_nodes('author')
-
-    p_a = defaultdict(list)
-    p_s = defaultdict(list)
-
-    for i, m in enumerate(target_node0):
-        p_a[m].append(ass_node0[i]+n)
-    for i, m in enumerate(target_node1):
-        p_s[m].append(ass_node1[i]+n1)
-
-    adj1 = matrix(list(p_a.values())).to(device)
-    adj2 = matrix(list(p_s.values())).to(device)
-    adj = torch.stack([adj1, adj2], dim=2)
-
-    print(g)
-
-    return adj
-
-
 def meta_dblp():
 
-    raw_dir = '/home/yhkj/D/MHGCN/data/DBLP/raw/'
+    raw_dir = './data/dblp/raw/'
 
     node_types = ['author', 'paper', 'term', 'conference']
     x = sp.load_npz(osp.join(raw_dir, f'features_0.npz'))
