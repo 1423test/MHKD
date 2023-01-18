@@ -32,7 +32,7 @@ def finetune(embeds, ratio, idx_train, idx_val, idx_test, label, nb_classes, dev
     auc_score_list = []
 
     h_t = torch.from_numpy(
-        np.load("/home/yhkj/D/MHGCN/HeCo/code/embeds/" + dataset + "/"  + "logits_" + str(ratio) + ".pkl", "wb",
+        np.load("../teacher/HeCo/code/embeds/HeCo/code/embeds/" + dataset + "/"  + "logits_" + str(ratio) + ".pkl", "wb",
                 allow_pickle=True)).to(device)
 
     for _ in range(50):
