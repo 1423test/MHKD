@@ -1,38 +1,32 @@
 # HeCo
-This repo is for source code of KDD 2021 paper "Self-supervised Heterogeneous Graph Neural Network with Co-contrastive Learning". \
-Paper Link: https://arxiv.org/abs/2105.09111
+This repo is for source code of paper "Self-supervised Heterogeneous Graph Neural Network with Co-contrastive Learning". \
+
 ## Environment Settings
-> python==3.8.5 \
-> scipy==1.5.4 \
-> torch==1.7.0 \
-> numpy==1.19.2 \
-> scikit_learn==0.24.2
+> python==3.8.13 \
+> scipy==1.7.3 \
+> torch==1.11.0 \
+> numpy==1.21.2 \
+> scikit_learn==1.0.2 \
+> dgl ==0.8.2
 
-GPU: GeForce RTX 2080 Ti \
-CPU: Intel(R) Xeon(R) Silver 4210 CPU @ 2.20GHz
+GPU: GeForce RTX 3090 Ti \
+
 ## Usage
-Fisrt, go into ./code, and then you can use the following commend to run our model: 
-> python main.py acm --gpu=0
+1. go into `./teacher`, and then you can follow the corresponding readme.md to train teacher model. And the publicly source codes of teacher model can be available at the following urls:
+[HAN] (https://github.com/dmlc/dgl/tree/master/examples/pytorch/han) 
 
-Here, "acm" can be replaced by "dblp", "aminer" or "freebase".
+[MAGNN] (https://github.com/cynricfu/MAGNN)
+
+[HGT] (https://github.com/dmlc/dgl/tree/master/examples/pytorch/hgt)
+
+[Heco] (https://github.com/BUPT-GAMMA/HeCo)
+
+2. use `python hy_dblp.py`  to run student model.
+Here, "acm" can be replaced by "dblp", "aminer", "freebase"  or "IMDB".
+
 ## Some tips in parameters
-1. We suggest you to carefully select the *“pos_num”* (existed in ./data/pos.py) to ensure the threshold of postives for every node. This is very important to final results. Of course, more effective way to select positives is welcome.
-2. In ./code/utils/params.py, except "lr" and "patience", meticulously tuning dropout and tau is applaudable.
-3. In our experiments, we only assign target type of nodes with original features, but assign other type of nodes with one-hot. This is because most of datasets used only provide features of target nodes in their original version. So, we believe in that if high-quality features of other type of nodes are provided, the overall results will improve a lot. The AMiner dataset is an example. In this dataset, there are not original features, so every type of nodes are all asigned with one-hot. In other words, every node has the same quality of features, and in this case, our HeCo is far ahead of other baselines. So, we strongly suggest that if you have high-quality features for other type of nodes, try it!
-## Cite
-```
-@inproceedings{heco,
-  author    = {Xiao Wang and
-               Nian Liu and
-               Hui Han and
-               Chuan Shi},
-  title     = {Self-supervised Heterogeneous Graph Neural Network with Co-contrastive
-               Learning},
-  booktitle = {{KDD} '21: The 27th {ACM} {SIGKDD} Conference on Knowledge Discovery
-               and Data Mining, Virtual Event, Singapore, August 14-18, 2021},
-  pages     = {1726--1736},
-  year      = {2021}
-}
-```
-## Contact
-If you have any questions, please feel free to contact me with nianliu@bupt.edu.cn
+1. We provide our hyperparameters setting as reported in our Appendix. 
+2. The hypermeters *“Lg”* and *“Lg”*(existed in ./Utils/stuparams.py) are suggested to carefully select to ensure the performance of distillation framework. This is very important to final results. 
+
+
+
