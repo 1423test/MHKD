@@ -31,14 +31,14 @@ Here, "acm" can be replaced by "dblp", "aminer", "freebase"  or "IMDB".
 
 ## Results
 
-There are some results on Heco teacher model, with DBLP dataset and student model. More results can be seen in our paper.
+There are some results on Heco teacher model, with DBLP dataset and student model in Mi-F1 metric. More results can be seen in our paper.
 
-| Metric      | GCN (Teacher) |   Student         | improvement       | 
-| ----------- | ------------- | ----------------- | ----------------- | 
-|   Ma-F1        | 0.8244        | **0.8576**        | 0.8567            | 
-|       | 0.7110        | 0.7619            | **0.7652**        |
-|      | 0.8318        | **0.8443**        | **0.8443**        | 
-|      | 0.9072        | **0.9317**        | 0.9248            | 
+
+| Split | Heco(teacher) | Student | Improvement |
+|-------|---------------|---------|-------------|
+| 20    | 0.9103        | 0.9274  | 1.71%       |
+| 40    | 0.9019        | 0.9246  | 2.27%       |
+| 60    | 0.9041        | 0.9260  | 2.19%       |
 
 
 
